@@ -1,6 +1,6 @@
 # Web Development Project 5 - *Amiibo Dashboard*
 
-Submitted by: **Your Name Here**
+Submitted by: **Keianna Brown**
 
 This web app: **insert description**
 
