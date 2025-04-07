@@ -2,7 +2,11 @@
 
 Submitted by: **Keianna Brown**
 
-This web app: **insert description**
+This web app: **User can use this program to find out information about Amiibos. If you click on an amiibo's expanded page you'll see the picture and release date. By default the North American release date, but if it was never released in North America it will show the Japanese release date.
+
+This program allows the user to use the search bar to find an amiibo. By default it will search by name. Or search for other attributes by specifying in the search input. Some attributes include gameSeries(Game the character is from), Type(Type of amiibo Figure, Card, or Yarn), and amiibo series(the Collection the amiibo is a part of).  
+Example Input: gameSeries:Animal Crossing/type:Figure/Isabelle
+Output: Isabelle, Isabelle Winter Outfit, Isabelle Summer Outfit** 
 
 Time spent: **11** hours spent in total
 
