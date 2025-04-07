@@ -12,7 +12,7 @@ function App() {
   const [list, setList] = useState([]);
   const [filteredResults, setFilteredResults] = useState(list);
   const [search, setSearch] = useState(""  );
-  const [attribute, setAttribute] = useState('');
+  ///const [attribute, setAttribute] = useState('');
   const [amiiboSeries, setAmiiboSeries] = useState([]);
   const [gameSeries, setGameSeries] = useState([]);
 
@@ -59,52 +59,43 @@ function App() {
  }
 
   const searchItem = (searchValue, attribute) => {
-    if (searchValue !== "") {
-      if(attribute === "name") {
-        setSearch(searchValue);
-        const amiibos = list.filter((item)=>item.name.toLowerCase().includes(searchValue.toLowerCase()));
-        setFilteredResults(amiibos);
-      }
-      else if(attribute === "type") {
-        const amiibos = list.filter((item)=>item.type.toLowerCase().includes(searchValue.toLowerCase()));
-        setFilteredResults(amiibos);
-      }
-    } 
-    else {
-      setFilteredResults(list);
-    }
-
-  };
-
-  const filterType = (attributeValue) => {
-    if(attributeValue === "0") {
-      attributeValue = "Card";
-    }
-    else if(attributeValue === "1") {
-      attributeValue = "Figure";
-    }
-    else if(attributeValue === "2") {
-      attributeValue = "Yarn";
-    }
-    else {
-      attributeValue = "";
-    }
-    setAttribute(attributeValue);
-    if (attributeValue !== "") {
-      searchItem(attributeValue, "type");
-      /*
-      if(filteredResults.length > 0) {
-
-        searchItem(search, attribute);
-        //const amiibos = filteredResults.filter((item)=>item.type.toLowerCase().includes(attributeValue.toLowerCase()));
+    const searchArray = searchValue.split("/");
+    let amiibos = list;
+    for (let i = 0; i < searchArray.length; i++) {
+      const searchInput = searchArray[i].split(":");
+      if (searchInput.length == 1) {
+        attribute = "name";
+        searchValue = searchInput[0];
       }
       else{
-
-        //const amiibos = list.filter((item)=>item.type.toLowerCase().includes(attributeValue.toLowerCase()));
-      }*/
+        attribute = searchInput[0];
+        searchValue = searchInput[1];
+      }
+      setSearch(searchValue);
+      switch (attribute) {
+        case "name":
+          amiibos = amiibos.filter((item)=>item.name.toLowerCase().includes(searchValue.toLowerCase()));
+          break;
+        case "gameSeries":
+          amiibos = amiibos.filter((item)=>item.gameSeries.toLowerCase().includes(searchValue.toLowerCase()));
+          break;
+        case "amiiboSeries":
+          amiibos = amiibos.filter((item)=>item.amiiboSeries.toLowerCase().includes(searchValue.toLowerCase()));
+          break;
+        case "character":
+          amiibos = amiibos.filter((item)=>item.character.toLowerCase().includes(searchValue.toLowerCase()));
+          break;
+        case "type":
+          amiibos = amiibos.filter((item)=>item.type.toLowerCase().includes(searchValue.toLowerCase()));
+          break;
+        default:
+          amiibos = amiibos.filter((item)=>item.name.toLowerCase().includes(searchValue.toLowerCase()));
+          break;
+      }
       setFilteredResults(amiibos);
-    } 
   }
+
+  };
 
 
   return (
@@ -128,24 +119,16 @@ function App() {
 
         <div className="header">
           <h1>Amiibo Search</h1>
-          <h4>Find an amiibo by its name.</h4>
-        
+          <h4>Find an amiibo by its name. Or search any attribute in the format:</h4>
+          <p>attribute:attributeName/attribute2:attribute2Name/...</p>
+          </div>
+        <div className="search-bar">
           <input
               type="text"
               placeholder="Search Amiibos..."
               onChange={(inputString) => searchItem(inputString.target.value, "name")}
             />
-          <form>
-            <label>Type (Card/Figure/Yarn/All):</label>
-            <input
-              type="range"
-              min="0"
-              max="3"
-              onChange={
-                (e) => props.filterType(e.target.value)}
-            />
-          </form>
-        </div>
+            </div>
 
         <br></br>
 
