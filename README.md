@@ -10,13 +10,13 @@ Time spent: **6** hours spent in total
 
 The following **required** functionality is completed:
 
-- [ ] **The list displays a list of data fetched using an API call**
+- [x] **The list displays a list of data fetched using an API call**
 - [x] **Data uses the useEffect React hook and async/await syntax**
 - [x] **The app dashboard includes at least three summary statistics about the data such as**
   - [x] # of Amiibos
   - [x] # of game series
   - [x] #  of amiibo series
-- [ ] **A search bar allows the user to search for an item in the fetched data**
+- [x] **A search bar allows the user to search for an item in the fetched data**
 - [ ] **Multiple different filters (2+) allow the user to filter items in the database by specified categories**
 
 The following **optional** features are implemented:
