@@ -4,7 +4,7 @@ Submitted by: **Keianna Brown**
 
 This web app: **insert description**
 
-Time spent: **6** hours spent in total
+Time spent: **11** hours spent in total
 
 ## Required Features
 
@@ -17,11 +17,11 @@ The following **required** functionality is completed:
   - [x] # of game series
   - [x] #  of amiibo series
 - [x] **A search bar allows the user to search for an item in the fetched data**
-- [ ] **Multiple different filters (2+) allow the user to filter items in the database by specified categories**
+- [x] **Multiple different filters (2+) allow the user to filter items in the database by specified categories**
 
 The following **optional** features are implemented:
 
-- [ ] Multiple filters can be applied simultaneously
+- [x] Multiple filters can be applied simultaneously
 - [ ] Filters use different input types such as a text input, a selection, or a slider
 - [ ] The user can enter specific bounds for filter values
 
@@ -33,7 +33,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://github.com/Keianna-B/Codepath-Web102-Project5/blob/master/Untitled%20video%20-%20Made%20with%20Clipchamp%20(2).gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 <!-- Replace this with whatever GIF tool you used! -->
 GIF created with ...  
