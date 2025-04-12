@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import NavBar from './components/NavBar';
-import Dashboard from './components/Dashboard';
 import Amiibo from './components/Amiibo';
+//import DataVisualization from './components/DataVisualization';
 import {Link} from "react-router-dom";
 import {useRoutes} from "react-router-dom";
+import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+  BarChart, Bar
+} from 'recharts';
 
 
 
@@ -47,8 +50,27 @@ function App() {
 
   }, [])
 
+  const countReleaseYear = (amiibo) => {
+    const releaseDates = amiibo.reduce((acc, item) => {
+      const year = item.release.jp.split("-")[0];
+      //const month = item.release.jp.split("-")[1];
+      //const day = item.release.jp.split("-")[2];
+      if (year) {
+        acc[year] = (acc[year] || 0) + 1;
+      }
+      return acc;
+    }, {});
+  }
 
-
+  const countAmiiboSeries = (amiibo) => {
+    const amiiboSeriesCount = amiibo.reduce((acc, item) => {
+        acc[item.amiiboSeries] = (acc[item.amiiboSeries] || 0) + 1;
+        return acc;
+    }, {});
+    return amiiboSeriesCount;
+};
+const formattedAmiiboSeriesCount = Object.entries(amiiboSeriesCount).map(([amiiboSeries, count]) => ({amiiboSeries, count}));
+const formatedReleaseYearCount = Object.entries(releaseYearCount).map(([releaseYear, count]) => ({releaseYear, count}));
 
  const getAmiiboSeries = async () => {
   for(let i = 0; i < amiiboSeries.length; i++) {
@@ -72,14 +94,14 @@ function App() {
         searchValue = searchInput[1];
       }
       setSearch(searchValue);
-      switch (attribute) {
+      switch (attribute.toLowerCase()) {
         case "name":
           amiibos = amiibos.filter((item)=>item.name.toLowerCase().includes(searchValue.toLowerCase()));
           break;
-        case "gameSeries":
+        case "gameseries":
           amiibos = amiibos.filter((item)=>item.gameSeries.toLowerCase().includes(searchValue.toLowerCase()));
           break;
-        case "amiiboSeries":
+        case "amiiboseries":
           amiibos = amiibos.filter((item)=>item.amiiboSeries.toLowerCase().includes(searchValue.toLowerCase()));
           break;
         case "character":
@@ -99,42 +121,62 @@ function App() {
 
 
   return (
-    <>
-      <div className="whole-page">
+    <div className="whole-page">
       <NavBar />
       <div className="sub-dash">
         <div className="sub-section">
           <h1>{list.length}</h1>
           <h3>Amiibos</h3>
-          </div>
-          <div className="sub-section">
+        </div>
+        <div className="sub-section">
           <h1>{gameSeries.length}</h1>
           <h3>Game Series</h3>
-          </div>
-          <div className="sub-section">
+        </div>
+        <div className="sub-section">
           <h1>{amiiboSeries.length}</h1>
           <h3>Amiibo Series: </h3>
         </div>
       </div>
 
-        <div className="header">
-          <h1>Amiibo Search</h1>
-          <h4>Find an amiibo by its name. Or search any attribute in the format:</h4>
-          <p>attribute:attributeName/attribute2:attribute2Name/...</p>
-          </div>
-        <div className="search-bar">
-          <input
-              type="text"
-              placeholder="Search Amiibos..."
-              onChange={(inputString) => searchItem(inputString.target.value, "name")}
-            />
-            </div>
+      <div className="graphs">
+        <h2>Bar chart of # amiibos in the amiibo series</h2>
+        
+          <BarChart width={600} height={300} data={formattedAmiiboSeriesCount}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="amiiboSeries"  tick={renderCustomAxisTick} />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="count" barSize={30} fill="#8884d8" />
+          </BarChart>
+
+        <h2>Line graph of # amiibos released by year</h2>
+      </div>
+
+      <div className="header">
+        <h2>Search</h2>
+        <h4>Find an amiibo by its name. Or filter any attribute in the format:</h4>
+        <p>attribute:attributeName/attribute2:attribute2Name/...</p>
+      </div>
+      <div className="search-bar">
+        <input
+            type="text"
+            placeholder="Search Amiibos..."
+            onChange={(inputString) => searchItem(inputString.target.value, "name")}
+          />
+          <select className="select" onChange={(e) => searchItem(e.target.value, "type")}>
+            <option value="">All Types</option>
+            <option value="Card">Card</option>
+            <option value="Figure">Figure</option>
+            <option value="Yarn">Yarn</option>
+          </select>
+        </div>
 
         <br></br>
 
-        <table>
+        <table className="amiibo-table">
           <thead>
-            <tr>
+            <tr className="table-header">
               <th>Name</th>
               <th>Game Series</th>
               <th>Amiibo Series</th>
@@ -180,8 +222,7 @@ function App() {
          
         </table>
 
-      </div>
-    </>
+    </div>
   )
 }
 

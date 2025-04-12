@@ -1,5 +1,6 @@
 import { Component, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import '/src/App.css';
 
 
 function Amiibo () {
@@ -26,7 +27,7 @@ function Amiibo () {
     , []);
 
     return (
-      <div className="ammibo-card">
+      <div className="amiibo-card">
         <h1 className="card-title">Amiibo: {item.name}</h1>
         <h3>Character: {item.character}</h3>
         <h3>Amiibo Series: {item.amiiboSeries}</h3>

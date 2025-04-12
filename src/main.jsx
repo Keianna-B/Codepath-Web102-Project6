@@ -4,6 +4,7 @@ import './index.css'
 import App from './App.jsx'
 import Amiibo from './components/Amiibo.jsx'
 //import NotFound from './components/NotFound.jsx'
+//import NotFound from './components/NotFound.jsx'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 createRoot(document.getElementById('root')).render(

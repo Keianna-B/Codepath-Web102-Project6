@@ -3,35 +3,108 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  background-color: var(--amiibo-yellow);
+  --amiibo-red: #FF0016;
+  --amiibo-lime: #9CC901;
+  --amiibo-blue: #01AAED;
+  --amiibo-black: #010100;
+  --amiibo-white: #FEFEFF;
+  --amiibo-green: #008862;
+  --amiibo-yellow: #FEAA01;
+  --amiibo-pink: #E80180;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.whole-page{
+  background-color: var(--amiibo-blue);
+  color: black;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.nav{
+  background-color: var(--amiibo-lime);
+  color: var(--amiibo-green);
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.nav-bar {
+  color: var(--amiibo-green);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2em 0;
+  text-decoration: none;
+  font-weight: bold;
+}
+.sub-dash {
+  display:flex;
+  flex-direction: row;
+  margin: 2em;
+  background-color: var(--amiibo-blue);
+  align-items: center;
+  justify-content: center;
+  color: var(--amiibo-green);
+}
+.sub-section {
+  display: flex;
+  flex-direction: column;
+  margin: 2em;
+  padding: 1em;
+  width: 8em;
+  height: 8em;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--amiibo-yellow);
+}
+.sub-dash h1 {
+  font-size: 2.5em;
+  color: var(--amiibo-red);
+}
+.table-header {
+  background-color: var(--amiibo-pink);
+  color: var(--amiibo-black);
+}
+.amiibo-table {
+  font-size: 1.5em;
+  font-weight: bold;
+  background-color: var(--amiibo-white);
+  color: var(--amiibo-pink);
+}
+a {
+  color: var(--amiibo-green);
+  text-decoration: none;
+  font-weight: bold;
+}
+a:hover {
+  color: var(--amiibo-lime);
+  text-decoration: underline;
+  text-decoration-color: var(--amiibo-pink);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.amiibo-card {
+  display: inline-block;
+  margin: 1em;
+  text-align: center;
+  background-color: var(--amiibo-green);
+  color: var(--amiibo-white);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.card-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: var(--amiibo-white);
+  background-color: var(--amiibo-pink);
+  margin: 0.5em 0;
+}
+.back-link{
+  color: var(--amiibo-white);
+  background-color: var(--amiibo-pink);
+  padding: 0 1em 0;
+  text-decoration: none;
+  font-weight: bold;
+}
+.amiibo-card img {
+  width:100%;
+  height: auto;
+  border-radius: 8px 8px 0 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
 
 .card {
   padding: 2em;
