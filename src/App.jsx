@@ -49,28 +49,32 @@ function App() {
 
 
   }, [])
+/*
+  const countReleaseYear = list.reduce((acc, item) => {
+    const year = item.release.jp.split("-")[0];
+    //const month = item.release.jp.split("-")[1];
+    //const day = item.release.jp.split("-")[2];
+    if (year) {
+      acc[year] = (acc[year] || 0) + 1;
+    }
+    return acc;
+  }, {});
+ 
+  const releaseYearCount = Object.entries(countReleaseYear).map(([key, value]) => ({
+    year: key,
+    count: value,
+  }));
+  */
 
-  const countReleaseYear = (amiibo) => {
-    const releaseDates = amiibo.reduce((acc, item) => {
-      const year = item.release.jp.split("-")[0];
-      //const month = item.release.jp.split("-")[1];
-      //const day = item.release.jp.split("-")[2];
-      if (year) {
-        acc[year] = (acc[year] || 0) + 1;
-      }
+  const countAmiiboSeries = list.reduce((acc, item) => {
+      acc[item.amiiboSeries] = (acc[item.amiiboSeries] || 0) + 1;
       return acc;
-    }, {});
-  }
-
-  const countAmiiboSeries = (amiibo) => {
-    const amiiboSeriesCount = amiibo.reduce((acc, item) => {
-        acc[item.amiiboSeries] = (acc[item.amiiboSeries] || 0) + 1;
-        return acc;
-    }, {});
-    return amiiboSeriesCount;
-};
-const formattedAmiiboSeriesCount = Object.entries(amiiboSeriesCount).map(([amiiboSeries, count]) => ({amiiboSeries, count}));
-const formatedReleaseYearCount = Object.entries(releaseYearCount).map(([releaseYear, count]) => ({releaseYear, count}));
+  }, {});
+    
+  const formattedAmiiboSeriesCount = Object.entries(countAmiiboSeries).map(([key, value]) => ({
+  amiiboSeries: key,
+  count: value,
+}));
 
  const getAmiiboSeries = async () => {
   for(let i = 0; i < amiiboSeries.length; i++) {
@@ -139,16 +143,15 @@ const formatedReleaseYearCount = Object.entries(releaseYearCount).map(([releaseY
       </div>
 
       <div className="graphs">
-        <h2>Bar chart of # amiibos in the amiibo series</h2>
-        
-          <BarChart width={600} height={300} data={formattedAmiiboSeriesCount}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="amiiboSeries"  tick={renderCustomAxisTick} />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey="count" barSize={30} fill="#8884d8" />
-          </BarChart>
+        <h2>Bar chart of # amiibos in each amiibo series</h2>
+        <BarChart width={600} height={300} data={formattedAmiiboSeriesCount}>
+          <XAxis dataKey="AmiiboSeries" stroke="8884d8" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+          <Bar dataKey="Count" fill="#8884d8" barSize={30}/>
+        </BarChart>
 
         <h2>Line graph of # amiibos released by year</h2>
       </div>
