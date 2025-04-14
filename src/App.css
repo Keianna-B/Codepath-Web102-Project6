@@ -105,11 +105,29 @@ a:hover {
   border-radius: 8px 8px 0 0;
 }
 
+.nav-bar{
+  background-color: var(--amiibo-green);
+  color: var(--amiibo-white);
+  height: 20%;
+  width: 40px; 
+  position: fixed; 
+  z-index: 1; 
+  top: 0; 
+  left: 0;
+  display: flex;
+  flex-direction: column;
 
-.card {
-  padding: 2em;
+}
+.nav-button {
+  background-color: var(--amiibo-green);
+  color: var(--amiibo-white);
 }
 
-.read-the-docs {
-  color: #888;
+.graphs{
+  background-color: var(--amiibo-green);
+  color: var(--amiibo-lime)
+  
+
+
+
 }

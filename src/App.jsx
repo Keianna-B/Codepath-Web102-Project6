@@ -49,22 +49,23 @@ function App() {
 
 
   }, [])
-/*
+
   const countReleaseYear = list.reduce((acc, item) => {
-    const year = item.release.jp.split("-")[0];
+    const year = item?.release.jp?.split("-")[0];
     //const month = item.release.jp.split("-")[1];
     //const day = item.release.jp.split("-")[2];
     if (year) {
       acc[year] = (acc[year] || 0) + 1;
+
     }
     return acc;
   }, {});
  
-  const releaseYearCount = Object.entries(countReleaseYear).map(([key, value]) => ({
+  const formattedReleaseYearCount = Object.entries(countReleaseYear).map(([key, value]) => ({
     year: key,
     count: value,
   }));
-  */
+  
 
   const countAmiiboSeries = list.reduce((acc, item) => {
       acc[item.amiiboSeries] = (acc[item.amiiboSeries] || 0) + 1;
@@ -145,15 +146,23 @@ function App() {
       <div className="graphs">
         <h2>Bar chart of # amiibos in each amiibo series</h2>
         <BarChart width={600} height={300} data={formattedAmiiboSeriesCount}>
-          <XAxis dataKey="AmiiboSeries" stroke="8884d8" />
+          <XAxis dataKey="amiiboSeries" />
           <YAxis />
           <Tooltip />
           <Legend />
-          <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-          <Bar dataKey="Count" fill="#8884d8" barSize={30}/>
+          <CartesianGrid strokeDasharray="5 5" />
+          <Bar dataKey="count" fill="#FF0016" />
         </BarChart>
 
         <h2>Line graph of # amiibos released by year</h2>
+        <LineChart width={600} height={300} data={formattedReleaseYearCount}>
+          <CartesianGrid strokeDasharray="5 5" />
+          <XAxis dataKey="year" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Line type="monotone" dataKey="count" stroke="#FF0016" />
+        </LineChart>
       </div>
 
       <div className="header">
