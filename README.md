@@ -1,25 +1,25 @@
-# Web Development Project 6 - *Name of App Here*
+# Web Development Project 6 - Amiibo Dashboard
 
-Submitted by: **Your Name Here**
+Submitted by: **Keiana Brown**
 
 This web app: **insert description**
 
-Time spent: **X** hours spent in total
+Time spent: **8** hours spent in total
 
 ## Required Features
 
 The following **required** functionality is completed:
 
-- [ ] **The app includes at least one unique chart developed using the fetched data that tell an interesting story**
+- [x] **The app includes at least one unique chart developed using the fetched data that tell an interesting story**
 - [x] **Clicking on an item in the list view displays more details about it**
-  - [ ] To ensure an accurate grade, your sidebar **must** be viewable when showing the details view in your recording.
+  - [x] To ensure an accurate grade, your sidebar **must** be viewable when showing the details view in your recording.
 - [x] **Clicking on an item has a direct, unique link to that item's detail view page**
   - [x] To ensure an accurate grade, the URL/address bar of your web browser **must** be viewable in your recording.  
 
 
 The following **optional** features are implemented:
 
-- [ ] The site's customized dashboard contains more content that explains what is interesting about the data
+- [x] The site's customized dashboard contains more content that explains what is interesting about the data
 - [ ] The site allows users to toggle between different data visualizations
 
 The following **additional** features are implemented:
