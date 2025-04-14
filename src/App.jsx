@@ -55,7 +55,7 @@ function App() {
       year = item.release.na.split("-")[0];
     }
     else if(item.release.jp){
-      year = item.release.jp?.split("-")[0];
+      year = item.release.jp.split("-")[0];
     }
     //const month = item.release.jp.split("-")[1];
     //const day = item.release.jp.split("-")[2];
