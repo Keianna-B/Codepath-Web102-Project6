@@ -37,7 +37,6 @@ function App() {
       setGameSeries(data.amiibo)
     }
     fetchGameSeries().catch(console.error)
-
     const fetchAmiiboSeries = async () => {
       const response = await fetch(
         `https://www.amiiboapi.com/api/amiiboseries/`
@@ -51,7 +50,13 @@ function App() {
   }, [])
 
   const countReleaseYear = list.reduce((acc, item) => {
-    const year = item?.release.jp?.split("-")[0];
+    let year;
+    if(item.release.na){
+      year = item.release.na.split("-")[0];
+    }
+    else if(item.release.jp){
+      year = item.release.jp?.split("-")[0];
+    }
     //const month = item.release.jp.split("-")[1];
     //const day = item.release.jp.split("-")[2];
     if (year) {
@@ -84,6 +89,8 @@ function App() {
     }
   }
  }
+
+
 
   const searchItem = (searchValue, attribute) => {
     const searchArray = searchValue.split("/");
@@ -123,6 +130,7 @@ function App() {
   }
 
   };
+
 
 
   return (
