@@ -90,11 +90,27 @@ function App() {
   }
  }
 
-
+const filterType = (type) => {
+  if(type === "All Types"){
+    setFilteredResults(list);
+  }
+  else if(type === "Card"){
+    const filtered = list.filter((item) => item.type === "Card");
+    setFilteredResults(filtered);
+  }
+  else if(type === "Figure"){
+    const filtered = list.filter((item) => item.type === "Figure");
+    setFilteredResults(filtered);
+  }
+  else if(type === "Yarn"){
+    const filtered = list.filter((item) => item.type === "Yarn");
+    setFilteredResults(filtered);
+  }
+}
 
   const searchItem = (searchValue, attribute) => {
     const searchArray = searchValue.split("/");
-    let amiibos = list;
+    let amiibos = filteredResults;
     for (let i = 0; i < searchArray.length; i++) {
       const searchInput = searchArray[i].split(":");
       if (searchInput.length == 1) {
@@ -184,7 +200,7 @@ function App() {
             placeholder="Search Amiibos..."
             onChange={(inputString) => searchItem(inputString.target.value, "name")}
           />
-          <select className="select" onChange={(e) => searchItem(e.target.value, "type")}>
+          <select className="select" onChange={(e) => filterType(e.target.value)}>
             <option value="">All Types</option>
             <option value="Card">Card</option>
             <option value="Figure">Figure</option>
